@@ -2,6 +2,7 @@ import { Avatar, Box, Button, IconButton, Input, Menu, MenuButton, MenuItem, Men
 import React from 'react'
 import {AddIcon, CloseIcon, HamburgerIcon} from "@chakra-ui/icons"
 import { useNavigate } from 'react-router-dom'
+import { SideBar } from './SideBar'
 
 export const Navbar = () => {
   const bgColor=useColorModeValue("gray.50","gray.700")
@@ -28,6 +29,9 @@ export const Navbar = () => {
           </MenuList>
         </Menu>
       </Stack>
+      {/* <Stack border={'1px solid red'} maxW={'150px'} height={'100vh'} display={{md:'none'}}>
+        {isOpen?<SideBar/>:null}
+      // </Stack> */}
     </Box>
   )
 }

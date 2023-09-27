@@ -17,9 +17,20 @@ router.post("",async (req,res)=>{
 router.get("",async (req,res)=>{
     try{
 
-        const product=await Product.find().lean().exec()
+        const category=req.query.category
+        if(category){
 
-        return res.status(200).send(product)
+            const product=await Product.find({category:category}).lean().exec()
+            return res.status(200).send(product)
+        }
+        else{
+            const product=await Product.find().lean().exec()
+
+            return res.status(200).send(product)
+        }
+        
+
+
 
     }
     catch(err){

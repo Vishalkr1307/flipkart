@@ -1,6 +1,6 @@
 import { Badge, Box, Circle, Image,Flex, Stack, Tooltip, useColorModeValue, IconButton } from '@chakra-ui/react'
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FiShoppingCart, } from 'react-icons/fi'
 import {BsStarFill,BsStarHalf,BsStar} from "react-icons/bs"
 import {} from "@chakra-ui/icons"
@@ -14,45 +14,51 @@ const data = {
     numReviews: 34,
   }
 
-export const ProductCart = () => {
+export const ProductCart = ({_id,category,description,image,price,rating,title}) => {
     const bgColor=useColorModeValue('white','gray.800')
+    const navigate=useNavigate()
+    const handlePage=()=>{
+        navigate(`/product/${_id}`,{replace:true})
+    }
   return (
-    <Flex  w='full'  alignItems={'center'} justifyContent={'center'}>
+    
+    <Flex  alignItems={'center'} justifyContent={'center'} onClick={handlePage}>
         <Stack bg={bgColor} px={8} py={4} maxW={'sm'} borderWidth={'1px '} rounded={'lg'} shadow={'lg'} position={'relative'}>
             {data.isNew && <Circle size={'10px'} position={'absolute'} top={2} right={2} bg={'red.200'}/>}
-            <Image src={data.imageURL} alt={`picture of${data.name}`} rounded={'lg'}/>
+            <Image src={image} alt={`picture of${title}`} rounded={'lg'}/>
             <Box>
                 <Box display={'flex'} alignItems={'baseline'}>
                     {data.isNew && <Badge rounded={'full'} px={2} fontSize={'0.8em'} colorScheme='red'>New</Badge>}
                 </Box>
             </Box>
             <Flex mt={1} px={8} justifyContent={'space-between'} alignItems={'center'}>
-                <Box fontSize={'2xl'} fontWeight={'semibold'} lineHeight='tight' isTruncated>{data.name}</Box>
+                <Box fontSize={'2xl'} fontWeight={'semibold'} lineHeight='tight' isTruncated>{title}</Box>
                 <Tooltip label="Add to Cart" bg={'white'} placement='top' color={'gray.800'} fontSize={'1.2rem'}>
-                    <Link to={'/#'}><IconButton icon={FiShoppingCart} h={7} w={7} alignSelf={'center'}/></Link>
+                    <Link to={'/#'}><IconButton aria-label='Search database' icon={<FiShoppingCart />} size={'lg'} alignSelf={'baseline'}/></Link>
                 </Tooltip>
             </Flex>
             <Flex justifyContent={'space-between'} px={8}>
-                <Rating rating={data.rating}/>
+                <Rating rating={rating.rate}/>
                 <Box fontSize={'2xl'} color={useColorModeValue('gray.800', 'white')}>
                     <Box as='span' color={'gray.600'} fontSize={'lg'}>
                         ₹
                         
 
                     </Box>
-                    {data.price}
+                    {price}
                 </Box>
             </Flex>
             
 
         </Stack>
     </Flex>
+   
   )
 }
 
 function Rating({rating}){
     const [array,setArray]=useState(new Array(5).fill(""))
-    console.log(array)
+    
 
     return (
         <Box display={'flex'} alignItems={'center'}>
