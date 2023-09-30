@@ -12,6 +12,7 @@ import { ProductCart } from '../component/ProductCart'
 import { ResetPasssword } from '../component/ResetPasssword'
 import { SideBar } from '../component/SideBar'
 import { ProductDetail } from '../component/ProductDetail'
+import { HomeDescribe } from '../component/HomeDescribe'
 
 export const AllRoute = () => {
   return (
@@ -30,6 +31,7 @@ export const AllRoute = () => {
         <Route path='/auth/login/forgetpassword' element={<ForgetPassword/>}/>
         <Route path='/auth/register' element={<Register/>}/>
         <Route path='/product' element={<Product/>}/>
+        <Route path='/home' element={<HomeDescribe/>}/>
         <Route path='/product/:id' element={<ProductDetail/>} />
     </Routes>
   )

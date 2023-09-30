@@ -17,7 +17,7 @@ export const Home = () => {
     
 
   },[product,dispatch,serchParam])
-  console.log(loading,product)
+ 
   return (
     <Box  width={'80%'} minH={'100vh'}>
      
